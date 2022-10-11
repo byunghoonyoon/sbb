@@ -1,6 +1,7 @@
 package com.mysite.sbb.answer.domain;
 
 import com.mysite.sbb.question.domain.Question;
+import com.mysite.sbb.siteUser.domain.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,4 +25,7 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }

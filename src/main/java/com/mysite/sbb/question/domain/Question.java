@@ -2,6 +2,7 @@ package com.mysite.sbb.question.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysite.sbb.answer.domain.Answer;
+import com.mysite.sbb.siteUser.domain.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,7 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
 }
