@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.domain.Pageable;
+import java.util.ArrayList;
 import org.springframework.data.domain.Sort;
 
 @Service
@@ -42,6 +42,18 @@ public class QuestionService {
         q.setAuthor(siteUser);
         questionRepository.save(q);
     }
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyDate(LocalDateTime.now());
+        this.questionRepository.save(question);
+    }
+    public void delete(Question question) {
+        this.questionRepository.delete(question);
+    }
 
-
+    public void vote(Question question, SiteUser siteUser) {
+        question.getVoter().add(siteUser);
+        this.questionRepository.save(question);
+    }
 }

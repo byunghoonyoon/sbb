@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import com.mysite.sbb.siteUser.UserCreateForm;
 import com.mysite.sbb.siteUser.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,5 +57,9 @@ public class UserController {
         return "login_form";
     }
 
-
+    @GetMapping("/info")
+    public void getUserInfo() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("username: " + userDetails.getUsername());
+    }
 }

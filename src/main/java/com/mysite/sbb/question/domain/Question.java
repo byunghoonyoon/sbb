@@ -3,12 +3,14 @@ package com.mysite.sbb.question.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysite.sbb.answer.domain.Answer;
 import com.mysite.sbb.siteUser.domain.SiteUser;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,4 +34,9 @@ public class Question {
 
     @ManyToOne
     private SiteUser author;
+
+    private LocalDateTime modifyDate;
+
+    @ManyToMany
+    Set<SiteUser> voter;
 }
